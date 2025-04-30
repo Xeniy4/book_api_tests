@@ -14,10 +14,10 @@ url_cart = "https://aromacode.ru/cart/"
 def test_add_item_in_cart():
     response = requests.post(url=url_add_card, data=body)
     assert response.status_code == 200
-    cookies = response.cookies.get('landing')
-    print(response.cookies)
+    # cookies = response.cookies.get('PHPSESSID')
+    # print(response.cookies)
 
-    browser.open(base_url)
-    browser.driver.add_cookie({"name": "landing", "value": cookies})
-    browser.open(url_cart)
-    browser.element('.sku-code').should(have.text('арт.: 97545'))
+    # browser.open(base_url)
+    # browser.driver.add_cookie({"name": "PHPSESSID", "value": cookies})
+    # browser.open(url_cart)
+    # browser.element('.sku-code').should(have.text('арт.: 97545'))

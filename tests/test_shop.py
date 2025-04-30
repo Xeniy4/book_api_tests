@@ -1,4 +1,3 @@
-from wsgiref.validate import assert_
 
 import requests
 from selene import browser, have

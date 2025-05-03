@@ -13,7 +13,7 @@ get_book = GetBooks()
 
 
 @allure.epic("API тесты")
-@allure.story('Проверка поиска ранее созданного заказа')
+@allure.story('Проверка поиска ранее созданного нами заказа')
 def test_get_booking_ids_from_create_book():
     create_book.create_valid_booking()
     response = requests.get(
@@ -21,7 +21,8 @@ def test_get_booking_ids_from_create_book():
         # params=id_book
     )
     assert response.status_code == 200
-
+    response_body = response.json()
+    validate(response_body, schema_get_book)
 
 
 @allure.epic("API тесты")
@@ -31,7 +32,13 @@ def test_get_random_booking_ids():
     assert response_get.status_code == 200
     response_body = response_get.json()
     validate(response_body, schema_get_book)
-    print(response_get)
+
+
+@allure.epic("API тесты")
+@allure.story('Проверка поиска не существующего заказа, id = 123456789123')
+def test_gen_non_existent_id():
+    response_get = get_book.get_book_with_id(123456789123)
+    assert response_get.status_code == 404
 
 
 

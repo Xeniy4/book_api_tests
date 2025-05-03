@@ -4,7 +4,7 @@ import allure
 import requests
 from jsonschema.validators import validate
 
-from helpers.api import base_url, CreateBook, create_endpoint
+from helpers.api import base_url, CreateBook, booking_endpoint
 from models.create_models import BookingdatesModel, BookingModel
 from schemas import schema_create_book
 
@@ -16,7 +16,7 @@ body_create = CreateBook()
 @allure.story('Проверка создания заказа с валидными значениями')
 def test_create_valid_booking():
     response = requests.post(
-        url=base_url + create_endpoint,
+        url=base_url + booking_endpoint,
         json=body_create.create_body_valid(
             first_name="Ivan",
             last_name="Ivanov",
@@ -32,12 +32,14 @@ def test_create_valid_booking():
     # assert response_text.checkin == "2025-07-01" # или today через импорт даты
     response_body = response.json()
     validate(response_body, schema_create_book)
+    id_book = response.json()["bookingid"]
+    return id_book
 
 @allure.epic("API тесты")
 @allure.story('Проверка создания заказа без обязательного поля  first_name')
 def test_create_no_valid_booking():
     response = requests.post(
-        url=base_url + create_endpoint,
+        url=base_url + booking_endpoint,
         json=body_create.create_body_no_valid(
             last_name="Ivanov",
             total_price="564",

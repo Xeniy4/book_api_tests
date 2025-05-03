@@ -72,3 +72,44 @@ schema_create_book = {
     "booking"
   ]
 }
+
+schema_get_book = {
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "firstname": {
+      "type": "string"
+    },
+    "lastname": {
+      "type": "string"
+    },
+    "totalprice": {
+      "type": "integer"
+    },
+    "depositpaid": {
+      "type": "boolean"
+    },
+    "bookingdates": {
+      "type": "object",
+      "properties": {
+        "checkin": {
+          "type": "string"
+        },
+        "checkout": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "checkin",
+        "checkout"
+      ]
+    }
+  },
+  "required": [
+    "firstname",
+    "lastname",
+    "totalprice",
+    "depositpaid",
+    "bookingdates"
+  ]
+}

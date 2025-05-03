@@ -1,8 +1,10 @@
 pytest
 allure-pytest==2.14.1
-requests
-jsonschema
+requests~=2.32.3
+jsonschema~=4.23.0
 selenium
 selene==2.0.0rc9
 python-dotenv
 webdriver-manager==4.0.2
+pycparser~=2.22
+pydantic~=2.11.4

@@ -35,7 +35,7 @@ def test_get_random_booking_ids():
 
 
 @allure.epic("API тесты")
-@allure.story('Проверка поиска не существующего заказа, id = 123456789123')
+@allure.story('Проверка поиска несуществующего заказа, id = 123456789123')
 def test_gen_non_existent_id():
     response_get = get_book.get_book_with_id(123456789123)
     assert response_get.status_code == 404

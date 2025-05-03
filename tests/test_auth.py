@@ -1,36 +1,19 @@
 import json
-from http.client import responses
-
 import requests
 from jsonschema.validators import validate
-from pycparser.ply.yacc import token
 
-from models.auth_model import AuthModel
-from schemas import auth_user
-
-
-def auth_book():
-    response = requests.post(
-        url="https://restful-booker.herokuapp.com/auth",
-        data={
-    "username" : "admin",
-    "password" : "password123"
-}
-    )
-    auth_response = AuthModel(**json.loads(response.text))
-    return auth_response.token
+from helpers.api import auth_book
+from schemas import schema_auth_user
+from models.auth_models import AuthModel
 
 
-
-
-tok = auth_book()
-
+response_token = auth_book()
 
 def test_book():
     response = requests.post(
         url="https://restful-booker.herokuapp.com/booking/2",
         headers= {
-            'Cookie': f'token={tok}'
+            'Cookie': f'token={response_token}'
         },
         data={
     "firstname" : "James1",

@@ -40,7 +40,7 @@ def test_create_valid_booking():
 def test_create_no_valid_booking():
     response = requests.post(
         url=base_url + booking_endpoint,
-        json=body_create.create_body_no_valid(
+        json=body_create.create_body_no_firstname(
             last_name="Ivanov",
             total_price="564",
             depositpaid_bool="True",

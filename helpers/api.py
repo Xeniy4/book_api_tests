@@ -44,7 +44,7 @@ class CreateUpdateBook:
         }
         return boby_create_update
 
-    def create_body_no_valid(self, last_name, total_price, depositpaid_bool, checkin_yyyy_mm_dd, checkout_yyyy_mm_dd, additional_needs):
+    def create_body_no_firstname(self, last_name, total_price, depositpaid_bool, checkin_yyyy_mm_dd, checkout_yyyy_mm_dd, additional_needs):
         boby_create = {
             "lastname": last_name,
             "totalprice": total_price,

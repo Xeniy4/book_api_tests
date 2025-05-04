@@ -53,4 +53,16 @@ def test_update_non_existent_book():
 @allure.epic("API тесты")
 @allure.story('Проверка редактирования с невалидными данными, например, без поля firstname')
 def test_update_non_existent_book():
-    pass
+    response = requests.put(
+        url=base_url + booking_endpoint + "21454618416846165",
+        json=update_body.create_update_body_valid(
+            first_name="Petr321",
+            last_name="Petrov321",
+            total_price="900321",
+            depositpaid_bool="True",
+            checkin_yyyy_mm_dd="2025-07-05",
+            checkout_yyyy_mm_dd="2025-07-10",
+            additional_needs="breakfast+dinner"
+        )
+    )
+    assert response.status_code == 403

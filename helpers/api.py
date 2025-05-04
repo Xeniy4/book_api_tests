@@ -80,3 +80,11 @@ class GetBooks:
             url=base_url+booking_endpoint+str(ids)
         )
         return response_get
+
+
+class DeleteBooks:
+    def delete_book(self, ids):
+        response = requests.delete(
+            url=base_url + booking_endpoint + str(ids)
+        )
+        return response

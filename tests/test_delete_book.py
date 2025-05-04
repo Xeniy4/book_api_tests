@@ -10,7 +10,8 @@ delete_book = DeleteBooks()
 @allure.epic("API тесты")
 @allure.story('Проверка удаления существующего заказа, id=123')
 def test_delete_book():
-    delete_book.delete_book("123")
+    response = delete_book.delete_book("123")
+    assert response.status_code == 403
 
 
 
@@ -19,4 +20,5 @@ def test_delete_book():
 @allure.epic("API тесты")
 @allure.story('Проверка удаления несуществующего заказа, id=1234567891234598')
 def test_delete_non_existent_book():
-    delete_book.delete_book("1234567891234598")
+    response = delete_book.delete_book("1234567891234598")
+    assert response.status_code == 403

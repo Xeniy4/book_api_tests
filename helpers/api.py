@@ -13,7 +13,7 @@ password = os.getenv("PASSWORD")
 
 base_url = "https://restful-booker.herokuapp.com"
 auth_endpoint = "/auth"
-booking_endpoint = "/booking"
+booking_endpoint = "/booking/"
 body_auth = {
     "username" : username,
     "password" : password
@@ -29,9 +29,9 @@ def auth_book():
 
 
 
-class CreateBook:
-    def create_body_valid(self, first_name, last_name, total_price, depositpaid_bool, checkin_yyyy_mm_dd, checkout_yyyy_mm_dd, additional_needs):
-        boby_create = {
+class CreateUpdateBook:
+    def create_update_body_valid(self, first_name, last_name, total_price, depositpaid_bool, checkin_yyyy_mm_dd, checkout_yyyy_mm_dd, additional_needs):
+        boby_create_update = {
             "firstname": first_name,
             "lastname": last_name,
             "totalprice": total_price,
@@ -42,7 +42,7 @@ class CreateBook:
             },
             "additionalneeds": additional_needs
         }
-        return boby_create
+        return boby_create_update
 
     def create_body_no_valid(self, last_name, total_price, depositpaid_bool, checkin_yyyy_mm_dd, checkout_yyyy_mm_dd, additional_needs):
         boby_create = {
@@ -60,7 +60,7 @@ class CreateBook:
     def create_valid_booking(self):
         response = requests.post(
             url=base_url + booking_endpoint,
-            json=self.create_body_valid(
+            json=self.create_update_body_valid(
                 first_name="Ivan",
                 last_name="Ivanov",
                 total_price="564",
@@ -75,8 +75,8 @@ class CreateBook:
 
 
 class GetBooks:
-    def get_book_with_id(self, id):
+    def get_book_with_id(self, ids):
         response_get = requests.get(
-            url=base_url+booking_endpoint+f'/{id}'
+            url=base_url+booking_endpoint+str(ids)
         )
         return response_get

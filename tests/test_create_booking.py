@@ -4,11 +4,11 @@ import allure
 import requests
 from jsonschema.validators import validate
 
-from helpers.api import base_url, CreateBook, booking_endpoint
+from helpers.api import base_url, CreateUpdateBook, booking_endpoint
 from models.create_models import BookingdatesModel, BookingModel
 from schemas import schema_create_book
 
-body_create = CreateBook()
+body_create = CreateUpdateBook()
 
 
 
@@ -17,7 +17,7 @@ body_create = CreateBook()
 def test_create_valid_booking():
     response = requests.post(
         url=base_url + booking_endpoint,
-        json=body_create.create_body_valid(
+        json=body_create.create_update_body_valid(
             first_name="Ivan",
             last_name="Ivanov",
             total_price="564",

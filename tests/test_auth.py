@@ -6,7 +6,6 @@ from helpers.api import auth_book
 from schemas import schema_auth_user
 from models.auth_models import AuthModel
 
-
 response_token = auth_book()
 
 def test_book():

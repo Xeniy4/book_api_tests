@@ -2,12 +2,12 @@ import allure
 import requests
 from jsonschema.validators import validate
 
-from helpers.api import base_url, CreateBook, booking_endpoint, GetBooks
+from helpers.api import base_url, CreateUpdateBook, booking_endpoint, GetBooks
 from schemas import schema_get_book
 
-create_book = CreateBook()
+create_book = CreateUpdateBook()
 id_book = create_book.create_valid_booking()
-id_book = int(id_book)
+id_book = str(id_book)
 get_book = GetBooks()
 
 

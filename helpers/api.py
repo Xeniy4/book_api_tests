@@ -88,7 +88,7 @@ class GetBooks:
 class DeleteBooks:
     def delete_book(self, ids):
         response = requests.delete(
-            url=base_url + booking_endpoint + str(ids),
+            url=base_url+booking_endpoint+str(ids),
             headers={
                 'Cookie': f'token={response_token}'
             }

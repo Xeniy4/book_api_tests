@@ -17,15 +17,13 @@
 ---
 
 Проект реализован с использованием актуальных инструментов:  
- <img src="media/icons/python.svg" width="50">  <img src="media/icons/pytest.png" width="50"> <img src="media/icons/pydantic.png" width="50">  <img src="media/icons/allure_report.png" width="50"> <img src="media/icons/allure_testops.png" width="50"> <img src="media/icons/tg.png" width="50">  
+ <img src="media/icons/python.svg" width="50">  <img src="media/icons/pytest.png" width="50"> <img src="media/icons/pydantic.png" width="50">  <img src="media/icons/allure_report.png" width="50"> 
 
 
 - Язык программирования `Python`
 - Фреймворк для создания моделей тестирования `Pydantic`
 - Фреймворк модульного тестирования `Pytest`
 - Фреймворки для сбора отчетности и хранения файлов тестирования `Allure Report`
-- Инструмент для сбора и хранения статистики тестов `Allure TestOps`
-- Краткие отчеты в `Telegram` отправляет `Telegram Bot`
 
 ---
 

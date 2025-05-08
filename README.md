@@ -50,7 +50,7 @@ allure.bat serve tests/allure-results
 
 <img src="media/images/allure_2.png">
 
-Детальная информация с шагами и аттачментами отображается в разделе `Suites`
+Детальная информация с шагами отображается в разделе `Suites`
 
 <img src="media/images/allure_1.png">
 

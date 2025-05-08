@@ -4,7 +4,6 @@ import requests
 from jsonschema.validators import validate
 from helpers.api import base_url, booking_endpoint, CreateUpdateBook, auth_book
 from schemas import schema_update_success
-from tests.test_get_bookings import id_book
 
 update_body = CreateUpdateBook()
 response_token = auth_book()

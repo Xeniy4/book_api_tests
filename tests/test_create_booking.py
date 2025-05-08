@@ -1,7 +1,6 @@
 import json
 import allure
 import requests
-from future.backports.datetime import datetime
 from jsonschema.validators import validate
 from helpers.api import base_url, CreateUpdateBook, booking_endpoint
 from schemas import schema_create_book
@@ -33,6 +32,7 @@ def test_create_valid_booking():
     validate(response_body, schema_create_book)
     id_book = response.json()["bookingid"]
     return id_book
+
 
 @allure.epic("API тесты")
 @allure.story('Проверка создания заказа без обязательного поля  first_name')

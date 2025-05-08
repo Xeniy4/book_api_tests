@@ -1,7 +1,6 @@
 import allure
 import requests
 from jsonschema.validators import validate
-
 from helpers.api import base_url, CreateUpdateBook, booking_endpoint, GetBooks
 from schemas import schema_get_book
 
@@ -9,7 +8,6 @@ create_book = CreateUpdateBook()
 id_book = create_book.create_valid_booking()
 id_book = str(id_book)
 get_book = GetBooks()
-
 
 
 @allure.epic("API тесты")
@@ -39,6 +37,3 @@ def test_get_random_booking_ids():
 def test_gen_non_existent_id():
     response_get = get_book.get_book_with_id(123456789123)
     assert response_get.status_code == 404
-
-
-

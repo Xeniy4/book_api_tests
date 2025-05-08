@@ -1,12 +1,9 @@
 import allure
-from requests import delete
-
 from helpers.api import DeleteBooks
 
 del_book = DeleteBooks()
 
-"""Сюда нужна авторизация, чтобы был ответ 200, а не 403
-И schema"""
+
 @allure.epic("API тесты")
 @allure.story('Проверка удаления существующего заказа, id=4')
 def test_delete_book():

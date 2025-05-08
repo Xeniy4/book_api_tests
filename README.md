@@ -1,4 +1,4 @@
-## Простые тесты для сайта Restful-booker
+## Автотесты для сайта Restful-booker
 
 [Arzamas](https://restful-booker.herokuapp.com/)
 

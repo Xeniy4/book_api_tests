@@ -19,6 +19,7 @@ body_auth = {
     "password" : password
 }
 
+
 def auth_book():
     response = requests.post(
         url=base_url+auth_endpoint,
@@ -27,6 +28,8 @@ def auth_book():
     auth_response = AuthModel(**json.loads(response.text))
     return auth_response.token
 
+
+response_token = auth_book()
 
 
 class CreateUpdateBook:
@@ -85,6 +88,9 @@ class GetBooks:
 class DeleteBooks:
     def delete_book(self, ids):
         response = requests.delete(
-            url=base_url + booking_endpoint + str(ids)
+            url=base_url + booking_endpoint + str(ids),
+            headers={
+                'Cookie': f'token={response_token}'
+            }
         )
         return response

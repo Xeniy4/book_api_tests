@@ -1,13 +1,17 @@
 import logging
-
 import allure
+from allure_commons.types import Severity
+
 from helpers.api import DeleteBooks
 
 del_book = DeleteBooks()
 
 
-@allure.epic("API тесты")
-@allure.story('Проверка удаления существующего заказа, id=4')
+@allure.severity(Severity.NORMAL)
+@allure.tag("API")
+@allure.label("owner", "Xeniy4")
+@allure.suite("API-Тесты")
+@allure.title('Проверка удаления существующего заказа, id=4')
 def test_delete_book():
     response = del_book.delete_book('4')
     assert response.status_code == 201
@@ -16,8 +20,11 @@ def test_delete_book():
     logging.info(response.url)
 
 
-@allure.epic("API тесты")
-@allure.story('Проверка удаления несуществующего заказа, id=1234567891234598')
+@allure.severity(Severity.NORMAL)
+@allure.tag("API")
+@allure.label("owner", "Xeniy4")
+@allure.suite("API-Тесты")
+@allure.title('Проверка удаления несуществующего заказа, id=1234567891234598')
 def test_delete_non_existent_book():
     response = del_book.delete_book("1234567891234598")
     assert response.status_code == 405

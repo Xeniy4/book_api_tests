@@ -1,8 +1,8 @@
 import json
 import logging
-
 import allure
 import requests
+from allure_commons.types import Severity
 from jsonschema.validators import validate
 from helpers.api import base_url, CreateUpdateBook, booking_endpoint
 from schemas import schema_create_book
@@ -12,8 +12,11 @@ body_create = CreateUpdateBook()
 today = str(datetime.date.today())
 
 
-@allure.epic("API тесты")
-@allure.story('Проверка создания заказа с валидными значениями')
+@allure.severity(Severity.NORMAL)
+@allure.tag("API")
+@allure.label("owner", "Xeniy4")
+@allure.suite("API-Тесты")
+@allure.title("Проверка создания заказа с валидными значениями")
 def test_create_valid_booking():
     response = requests.post(
         url=base_url + booking_endpoint,
@@ -36,13 +39,15 @@ def test_create_valid_booking():
     logging.info(response.text)
     logging.info(response.status_code)
     logging.info(response.url)
+    logging.info(response.headers)
     return id_book
 
 
-
-
-@allure.epic("API тесты")
-@allure.story('Проверка создания заказа без обязательного поля  first_name')
+@allure.severity(Severity.NORMAL)
+@allure.tag("API")
+@allure.label("owner", "Xeniy4")
+@allure.suite("API-Тесты")
+@allure.title('Проверка создания заказа без обязательного поля  first_name')
 def test_create_no_valid_booking():
     response = requests.post(
         url=base_url + booking_endpoint,

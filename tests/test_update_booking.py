@@ -2,6 +2,7 @@ import json
 import logging
 import allure
 import requests
+from allure_commons.types import Severity
 from jsonschema.validators import validate
 from helpers.api import base_url, booking_endpoint, CreateUpdateBook, auth_book
 from schemas import schema_update_success
@@ -10,8 +11,11 @@ update_body = CreateUpdateBook()
 response_token = auth_book()
 
 
-@allure.epic("API тесты")
-@allure.story('Проверка редактирования собственного заказа')
+@allure.severity(Severity.NORMAL)
+@allure.tag("API")
+@allure.label("owner", "Xeniy4")
+@allure.suite("API-Тесты")
+@allure.title('Проверка редактирования собственного заказа')
 def test_update_self_book():
     response = requests.put(
         url=base_url+booking_endpoint+"21",
@@ -37,8 +41,12 @@ def test_update_self_book():
     logging.info(response.url)
 
 
-@allure.epic("API тесты")
-@allure.story('Проверка редактирования несуществующего заказа')
+
+@allure.severity(Severity.NORMAL)
+@allure.tag("API")
+@allure.label("owner", "Xeniy4")
+@allure.suite("API-Тесты")
+@allure.title('Проверка редактирования несуществующего заказа')
 def test_update_non_existent_book():
     response = requests.put(
         url=base_url + booking_endpoint + "214546184",
@@ -61,8 +69,11 @@ def test_update_non_existent_book():
     logging.info(response.url)
 
 
-@allure.epic("API тесты")
-@allure.story('Проверка редактирования с невалидными данными, например, без поля firstname')
+@allure.severity(Severity.NORMAL)
+@allure.tag("API")
+@allure.label("owner", "Xeniy4")
+@allure.suite("API-Тесты")
+@allure.title('Проверка редактирования с невалидными данными, например, без поля firstname')
 def test_update_non_existent_book():
     response = requests.put(
         url=base_url + booking_endpoint + "21454618416846165",

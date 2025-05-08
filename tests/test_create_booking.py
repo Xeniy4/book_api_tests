@@ -1,4 +1,6 @@
 import json
+import logging
+
 import allure
 import requests
 from jsonschema.validators import validate
@@ -31,7 +33,12 @@ def test_create_valid_booking():
     response_body = response.json()
     validate(response_body, schema_create_book)
     id_book = response.json()["bookingid"]
+    logging.info(response.text)
+    logging.info(response.status_code)
+    logging.info(response.url)
     return id_book
+
+
 
 
 @allure.epic("API тесты")
@@ -49,3 +56,6 @@ def test_create_no_valid_booking():
         )
     )
     assert response.status_code == 500
+    logging.info(response.text)
+    logging.info(response.status_code)
+    logging.info(response.url)

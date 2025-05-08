@@ -1,4 +1,5 @@
 import json
+import logging
 import allure
 import requests
 from jsonschema.validators import validate
@@ -31,6 +32,9 @@ def test_update_self_book():
     assert json.loads(response.text)['additionalneeds'] == "breakfast+dinner"
     response_body = response.json()
     validate(response_body, schema_update_success)
+    logging.info(response.text)
+    logging.info(response.status_code)
+    logging.info(response.url)
 
 
 @allure.epic("API тесты")
@@ -52,6 +56,9 @@ def test_update_non_existent_book():
         )
     )
     assert response.status_code == 405
+    logging.info(response.text)
+    logging.info(response.status_code)
+    logging.info(response.url)
 
 
 @allure.epic("API тесты")
@@ -72,3 +79,6 @@ def test_update_non_existent_book():
         )
     )
     assert response.status_code == 400
+    logging.info(response.text)
+    logging.info(response.status_code)
+    logging.info(response.url)

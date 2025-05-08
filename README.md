@@ -1,6 +1,6 @@
 ## Автотесты для сайта Restful-booker
 
-[Arzamas](https://restful-booker.herokuapp.com/)
+[Restful-booker](https://restful-booker.herokuapp.com/)
 
 ---
  

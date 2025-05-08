@@ -50,29 +50,11 @@ allure.bat serve tests/allure-results
 
 ## Пример отчета о прохождении api-тестов
 
-<img src="media/images/allure1.png">
+<img src="media/images/allure_2.png">
 
 Детальная информация с шагами и аттачментами отображается в разделе `Suites`
 
-<img src="media/images/allure2.png">
-
----
-### Статистика отчета хранится в Allure TestOps
-Последний отчет можно посмотреть на сайте [Allure TestOps](https://allure.autotests.cloud/launch/45643/?treeId=0)  
-Для просмотра статистики после запуска в Jenkins в шаге 4 необходимо нажать на кнопку `Allure TestOps` <img src="media/icons/allure_testops.png" width="15">
-
-<img src="media/images/testops1.png">
-
-Детальная информация по тест-кейсам
-
-<img src="media/images/testops2.png">
-
-
----
-### Отчет о результатах тестирования в Telegram
-Отчеты приходят в канал [Allure_channel](https://t.me/Allure_channel_autotests)
-
-<img src="media/images/tg.png">
+<img src="media/images/allure_1.png">
 
 
 

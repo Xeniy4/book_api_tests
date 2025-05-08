@@ -11,9 +11,9 @@ del_book = DeleteBooks()
 @allure.tag("API")
 @allure.label("owner", "Xeniy4")
 @allure.suite("API-Тесты")
-@allure.title('Проверка удаления существующего заказа, id=4')
+@allure.title('Проверка удаления существующего заказа, id=7')
 def test_delete_book():
-    response = del_book.delete_book('4')
+    response = del_book.delete_book('7')
     assert response.status_code == 201
     logging.info(response.text)
     logging.info(response.status_code)

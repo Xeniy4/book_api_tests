@@ -1,15 +1,14 @@
 import json
-
 import allure
 import requests
+from future.backports.datetime import datetime
 from jsonschema.validators import validate
-
 from helpers.api import base_url, CreateUpdateBook, booking_endpoint
-from models.create_models import BookingdatesModel, BookingModel
 from schemas import schema_create_book
+import datetime
 
 body_create = CreateUpdateBook()
-
+today = str(datetime.date.today())
 
 
 @allure.epic("API тесты")
@@ -22,14 +21,14 @@ def test_create_valid_booking():
             last_name="Ivanov",
             total_price="564",
             depositpaid_bool="True",
-            checkin_yyyy_mm_dd="2025-07-01",
+            checkin_yyyy_mm_dd=f'"{today}"',
             checkout_yyyy_mm_dd="2025-07-01",
             additional_needs="dinner"
         )
     )
-    # response_text = BookingdatesModel(**json.loads(response.text))
     assert response.status_code == 200
-    # assert response_text.checkin == "2025-07-01" # или today через импорт даты
+    assert json.loads(response.text)['booking']['bookingdates']['checkin'] == today
+    assert json.loads(response.text)['booking']['additionalneeds'] == "dinner"
     response_body = response.json()
     validate(response_body, schema_create_book)
     id_book = response.json()["bookingid"]
@@ -40,7 +39,7 @@ def test_create_valid_booking():
 def test_create_no_valid_booking():
     response = requests.post(
         url=base_url + booking_endpoint,
-        json=body_create.create_body_no_firstname(
+        json=body_create.create_update_body_no_firstname(
             last_name="Ivanov",
             total_price="564",
             depositpaid_bool="True",

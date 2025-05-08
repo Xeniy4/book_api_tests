@@ -1,19 +1,23 @@
+import json
 import allure
 import requests
-
-from helpers.api import base_url, booking_endpoint, CreateUpdateBook
+from jsonschema.validators import validate
+from helpers.api import base_url, booking_endpoint, CreateUpdateBook, auth_book
+from schemas import schema_update_success
 from tests.test_get_bookings import id_book
 
 update_body = CreateUpdateBook()
+response_token = auth_book()
 
 
-"""Сюда нужна авторизация, чтобы был ответ 200, а не 403
-И schema"""
 @allure.epic("API тесты")
 @allure.story('Проверка редактирования собственного заказа')
 def test_update_self_book():
     response = requests.put(
         url=base_url+booking_endpoint+"21",
+        headers={
+            'Cookie': f'token={response_token}'
+        },
         json=update_body.create_update_body_valid(
             first_name="Petr",
             last_name="Petrov",
@@ -24,16 +28,20 @@ def test_update_self_book():
             additional_needs="breakfast+dinner"
         )
     )
-    assert response.status_code == 403
+    assert response.status_code == 200
+    assert json.loads(response.text)['additionalneeds'] == "breakfast+dinner"
+    response_body = response.json()
+    validate(response_body, schema_update_success)
 
 
-"""Сюда нужна авторизация, чтобы был ответ 200, а не 403
-И schema"""
 @allure.epic("API тесты")
 @allure.story('Проверка редактирования несуществующего заказа')
 def test_update_non_existent_book():
     response = requests.put(
-        url=base_url + booking_endpoint + "21454618416846165",
+        url=base_url + booking_endpoint + "214546184",
+        headers={
+            'Cookie': f'token={response_token}'
+        },
         json=update_body.create_update_body_valid(
             first_name="Petr123",
             last_name="Petrov123",
@@ -44,19 +52,18 @@ def test_update_non_existent_book():
             additional_needs="breakfast+dinner"
         )
     )
-    assert response.status_code == 403
+    assert response.status_code == 405
 
 
-
-"""Сюда нужна авторизация, чтобы был ответ 200, а не 403
-И schema"""
 @allure.epic("API тесты")
 @allure.story('Проверка редактирования с невалидными данными, например, без поля firstname')
 def test_update_non_existent_book():
     response = requests.put(
         url=base_url + booking_endpoint + "21454618416846165",
-        json=update_body.create_update_body_valid(
-            first_name="Petr321",
+        headers={
+            'Cookie': f'token={response_token}'
+        },
+        json=update_body.create_update_body_no_firstname(
             last_name="Petrov321",
             total_price="900321",
             depositpaid_bool="True",
@@ -65,4 +72,4 @@ def test_update_non_existent_book():
             additional_needs="breakfast+dinner"
         )
     )
-    assert response.status_code == 403
+    assert response.status_code == 400

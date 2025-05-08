@@ -8,8 +8,8 @@ from models.create_models import CreateModel
 
 load_dotenv()
 
-username = os.getenv("USERNAME")
-password = os.getenv("PASSWORD")
+username = os.getenv("BOOKER_USERNAME")
+password = os.getenv("BOOKER_PASSWORD")
 
 base_url = "https://restful-booker.herokuapp.com"
 auth_endpoint = "/auth"
@@ -44,7 +44,7 @@ class CreateUpdateBook:
         }
         return boby_create_update
 
-    def create_body_no_firstname(self, last_name, total_price, depositpaid_bool, checkin_yyyy_mm_dd, checkout_yyyy_mm_dd, additional_needs):
+    def create_update_body_no_firstname(self, last_name, total_price, depositpaid_bool, checkin_yyyy_mm_dd, checkout_yyyy_mm_dd, additional_needs):
         boby_create = {
             "lastname": last_name,
             "totalprice": total_price,

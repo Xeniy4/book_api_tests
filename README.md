@@ -3,11 +3,12 @@
 [Restful-booker](https://restful-booker.herokuapp.com/)
 
 ---
- 
+
 <img src="media/images/booker.png">
 
 
 Список проведенных проверок:
+
 - Авторизация пользователя
 - Создания заказа
 - Редактирование заказа
@@ -17,8 +18,7 @@
 ---
 
 Проект реализован с использованием актуальных инструментов:  
- <img src="media/icons/python.svg" width="50">  <img src="media/icons/pytest.png" width="50"> <img src="media/icons/pydantic.png" width="50">  <img src="media/icons/allure_report.png" width="50"> 
-
+<img src="media/icons/python.svg" width="50">  <img src="media/icons/pytest.png" width="50"> <img src="media/icons/pydantic.png" width="50">  <img src="media/icons/allure_report.png" width="50">
 
 - Язык программирования `Python`
 - Фреймворк модульного тестирования `Pytest`
@@ -28,20 +28,25 @@
 ---
 
 ### Локальный запуск
+
 Перед запуском в корне проекта создать файл .env с содержимым:
+
 ```
 BOOKER_USERNAME="admin"
 BOOKER_PASSWORD="password123"
 ```
 
 Для локального запуска необходимо выполнить:
+
 ```
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 pytest .
 ```
+
 Для получения отчета необходимо выполнить:
+
 ```
 allure.bat serve tests/allure-results
 ```

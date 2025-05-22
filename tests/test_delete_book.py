@@ -1,8 +1,9 @@
 import logging
+
 import allure
 from allure_commons.types import Severity
 
-from helpers.api import DeleteBooks
+from api_methods.api import DeleteBooks
 
 del_book = DeleteBooks()
 

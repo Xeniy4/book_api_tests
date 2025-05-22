@@ -1,10 +1,12 @@
 import json
 import logging
+
 import allure
 import requests
 from allure_commons.types import Severity
 from jsonschema.validators import validate
-from helpers.api import base_url, booking_endpoint, CreateUpdateBook, auth_book
+
+from api_methods.api import base_url, booking_endpoint, CreateUpdateBook, auth_book
 from schemas import schema_update_success
 
 update_body = CreateUpdateBook()
@@ -18,7 +20,7 @@ response_token = auth_book()
 @allure.title('Проверка редактирования собственного заказа')
 def test_update_self_book():
     response = requests.put(
-        url=base_url+booking_endpoint+"21",
+        url=base_url + booking_endpoint + "21",
         headers={
             'Cookie': f'token={response_token}'
         },
@@ -39,7 +41,6 @@ def test_update_self_book():
     logging.info(response.text)
     logging.info(response.status_code)
     logging.info(response.url)
-
 
 
 @allure.severity(Severity.NORMAL)

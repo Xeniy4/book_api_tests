@@ -1,9 +1,12 @@
 import json
-import requests
-from models.auth_models import AuthModel
-from dotenv import load_dotenv
+import logging
 import os
 
+import pytest
+import requests
+from dotenv import load_dotenv
+
+from models.auth_models import AuthModel
 from models.create_models import CreateModel
 
 load_dotenv()
@@ -12,18 +15,16 @@ username = os.getenv("BOOKER_USERNAME")
 password = os.getenv("BOOKER_PASSWORD")
 
 base_url = "https://restful-booker.herokuapp.com"
-auth_endpoint = "/auth"
 booking_endpoint = "/booking/"
-body_auth = {
-    "username" : username,
-    "password" : password
-}
 
 
 def auth_book():
     response = requests.post(
-        url=base_url+auth_endpoint,
-        data=body_auth
+        url=base_url + "/auth",
+        data={
+        "username": username,
+        "password": password
+    }
     )
     auth_response = AuthModel(**json.loads(response.text))
     return auth_response.token
@@ -33,7 +34,8 @@ response_token = auth_book()
 
 
 class CreateUpdateBook:
-    def create_update_body_valid(self, first_name, last_name, total_price, depositpaid_bool, checkin_yyyy_mm_dd, checkout_yyyy_mm_dd, additional_needs):
+    def create_update_body_valid(self, first_name, last_name, total_price, depositpaid_bool, checkin_yyyy_mm_dd,
+                                 checkout_yyyy_mm_dd, additional_needs):
         boby_create_update = {
             "firstname": first_name,
             "lastname": last_name,
@@ -47,7 +49,8 @@ class CreateUpdateBook:
         }
         return boby_create_update
 
-    def create_update_body_no_firstname(self, last_name, total_price, depositpaid_bool, checkin_yyyy_mm_dd, checkout_yyyy_mm_dd, additional_needs):
+    def create_update_body_no_firstname(self, last_name, total_price, depositpaid_bool, checkin_yyyy_mm_dd,
+                                        checkout_yyyy_mm_dd, additional_needs):
         boby_create = {
             "lastname": last_name,
             "totalprice": total_price,
@@ -80,7 +83,7 @@ class CreateUpdateBook:
 class GetBooks:
     def get_book_with_id(self, ids):
         response_get = requests.get(
-            url=base_url+booking_endpoint+str(ids)
+            url=base_url + booking_endpoint + str(ids)
         )
         return response_get
 
@@ -88,9 +91,16 @@ class GetBooks:
 class DeleteBooks:
     def delete_book(self, ids):
         response = requests.delete(
-            url=base_url+booking_endpoint+str(ids),
+            url=base_url + booking_endpoint + str(ids),
             headers={
                 'Cookie': f'token={response_token}'
             }
         )
         return response
+
+
+class ResponseLogging:
+    @pytest.mark.parametrize("response", ["text", "status_code", "url"])
+    def response_logging(self, **kwargs):
+        logging.info(kwargs.text)
+        return logging

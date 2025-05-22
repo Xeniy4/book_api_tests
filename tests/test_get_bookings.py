@@ -1,15 +1,18 @@
 import logging
+
 import allure
 import requests
 from allure_commons.types import Severity
 from jsonschema.validators import validate
-from helpers.api import base_url, CreateUpdateBook, booking_endpoint, GetBooks
+
+from api_methods.api import base_url, CreateUpdateBook, booking_endpoint, GetBooks, ResponseLogging
 from schemas import schema_get_book
 
 create_book = CreateUpdateBook()
 id_book = create_book.create_valid_booking()
 id_book = str(id_book)
 get_book = GetBooks()
+logs = ResponseLogging()
 
 
 @allure.severity(Severity.NORMAL)
@@ -20,7 +23,7 @@ get_book = GetBooks()
 def test_get_booking_ids_from_create_book():
     create_book.create_valid_booking()
     response = requests.get(
-        url=base_url+booking_endpoint+id_book
+        url=base_url + booking_endpoint + id_book
     )
     assert response.status_code == 200
     response_body = response.json()
@@ -40,9 +43,8 @@ def test_get_random_booking_ids():
     assert response_get.status_code == 200
     response_body = response_get.json()
     validate(response_body, schema_get_book)
-    logging.info(response_get.text)
-    logging.info(response_get.status_code)
-    logging.info(response_get.url)
+    logs(response_get)
+
 
 
 @allure.severity(Severity.NORMAL)

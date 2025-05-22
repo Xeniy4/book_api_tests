@@ -1,12 +1,14 @@
+import datetime
 import json
 import logging
+
 import allure
 import requests
 from allure_commons.types import Severity
 from jsonschema.validators import validate
-from helpers.api import base_url, CreateUpdateBook, booking_endpoint
+
+from api_methods.api import base_url, CreateUpdateBook, booking_endpoint
 from schemas import schema_create_book
-import datetime
 
 body_create = CreateUpdateBook()
 today = str(datetime.date.today())

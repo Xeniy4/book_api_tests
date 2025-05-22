@@ -18,7 +18,7 @@ base_url = "https://restful-booker.herokuapp.com"
 booking_endpoint = "/booking/"
 
 
-def auth_book():
+def auth_booking():
     response = requests.post(
         url=base_url + "/auth",
         data={
@@ -30,7 +30,7 @@ def auth_book():
     return auth_response.token
 
 
-response_token = auth_book()
+response_token = auth_booking()
 
 
 class CreateUpdateBook:
@@ -81,7 +81,7 @@ class CreateUpdateBook:
 
 
 class GetBooks:
-    def get_book_with_id(self, ids):
+    def get_booking_with_id(self, ids):
         response_get = requests.get(
             url=base_url + booking_endpoint + str(ids)
         )
@@ -89,7 +89,7 @@ class GetBooks:
 
 
 class DeleteBooks:
-    def delete_book(self, ids):
+    def delete_booking(self, ids):
         response = requests.delete(
             url=base_url + booking_endpoint + str(ids),
             headers={
@@ -98,9 +98,9 @@ class DeleteBooks:
         )
         return response
 
-
-class ResponseLogging:
-    @pytest.mark.parametrize("response", ["text", "status_code", "url"])
-    def response_logging(self, **kwargs):
-        logging.info(kwargs.text)
-        return logging
+#
+# class ResponseLogging:
+#     @pytest.mark.parametrize("response", ["text", "status_code", "url"])
+#     def response_logging(self, **kwargs):
+#         logging.info(kwargs.text)
+#         return logging

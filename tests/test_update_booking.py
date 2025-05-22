@@ -6,11 +6,11 @@ import requests
 from allure_commons.types import Severity
 from jsonschema.validators import validate
 
-from api_methods.api import base_url, booking_endpoint, CreateUpdateBook, auth_book
+from api_methods.api import base_url, booking_endpoint, CreateUpdateBook, auth_booking
 from schemas import schema_update_success
 
 update_body = CreateUpdateBook()
-response_token = auth_book()
+response_token = auth_booking()
 
 
 @allure.severity(Severity.NORMAL)

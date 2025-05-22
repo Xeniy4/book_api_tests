@@ -39,11 +39,11 @@ def test_get_booking_ids_from_create_book():
 @allure.suite("API-Тесты")
 @allure.title('Проверка поиска существующего заказа, id = 3')
 def test_get_random_booking_ids():
-    response_get = get_book.get_book_with_id(3)
+    response_get = get_book.get_booking_with_id(3)
     assert response_get.status_code == 200
     response_body = response_get.json()
     validate(response_body, schema_get_book)
-    logs(response_get)
+    # logs(response_get)
 
 
 
@@ -53,7 +53,7 @@ def test_get_random_booking_ids():
 @allure.suite("API-Тесты")
 @allure.title('Проверка поиска несуществующего заказа, id = 123456789123')
 def test_gen_non_existent_id():
-    response_get = get_book.get_book_with_id(123456789123)
+    response_get = get_book.get_booking_with_id(123456789123)
     assert response_get.status_code == 404
     logging.info(response_get.text)
     logging.info(response_get.status_code)

@@ -14,7 +14,7 @@ del_book = DeleteBooks()
 @allure.suite("API-Тесты")
 @allure.title('Проверка удаления существующего заказа, id=7')
 def test_delete_book():
-    response = del_book.delete_book('7')
+    response = del_book.delete_booking('7')
     assert response.status_code == 201
     logging.info(response.text)
     logging.info(response.status_code)
@@ -27,7 +27,7 @@ def test_delete_book():
 @allure.suite("API-Тесты")
 @allure.title('Проверка удаления несуществующего заказа, id=1234567891234598')
 def test_delete_non_existent_book():
-    response = del_book.delete_book("1234567891234598")
+    response = del_book.delete_booking("1234567891234598")
     assert response.status_code == 405
     logging.info(response.text)
     logging.info(response.status_code)

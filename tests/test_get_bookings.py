@@ -5,14 +5,14 @@ import requests
 from allure_commons.types import Severity
 from jsonschema.validators import validate
 
-from api_methods.api import base_url, CreateUpdateBook, booking_endpoint, GetBooks, ResponseLogging
+from api_methods.api import base_url, CreateUpdateBook, booking_endpoint, GetBooks
 from schemas import schema_get_book
 
 create_book = CreateUpdateBook()
 id_book = create_book.create_valid_booking()
 id_book = str(id_book)
 get_book = GetBooks()
-logs = ResponseLogging()
+# logs = ResponseLogging()
 
 
 @allure.severity(Severity.NORMAL)

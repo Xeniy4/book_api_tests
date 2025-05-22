@@ -98,9 +98,10 @@ class DeleteBooks:
         )
         return response
 
-#
-# class ResponseLogging:
-#     @pytest.mark.parametrize("response", ["text", "status_code", "url"])
-#     def response_logging(self, **kwargs):
-#         logging.info(kwargs.text)
-#         return logging
+def response_logging(response):
+    logging.info(response.text)
+    logging.info(response.status_code),
+    logging.info(response.url)
+    logging.info(response.headers)
+    return logging
+

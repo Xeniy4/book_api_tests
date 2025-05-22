@@ -6,8 +6,8 @@ import requests
 from allure_commons.types import Severity
 from jsonschema.validators import validate
 
-from api_methods.api import base_url, booking_endpoint, CreateUpdateBook, auth_booking
-from schemas import schema_update_success
+from api_methods.api import base_url, booking_endpoint, CreateUpdateBook, auth_booking, response_logging
+from models.schemas import schema_update_success
 
 update_body = CreateUpdateBook()
 auth_token = auth_booking()
@@ -38,9 +38,7 @@ def test_update_self_book():
     assert json.loads(response.text)['additionalneeds'] == "breakfast+dinner"
     response_body = response.json()
     validate(response_body, schema_update_success)
-    logging.info(response.text)
-    logging.info(response.status_code)
-    logging.info(response.url)
+    response_logging(response=response)
 
 
 @allure.severity(Severity.NORMAL)
@@ -65,9 +63,7 @@ def test_update_non_existent_book():
         )
     )
     assert response.status_code == 405
-    logging.info(response.text)
-    logging.info(response.status_code)
-    logging.info(response.url)
+    response_logging(response=response)
 
 
 @allure.severity(Severity.NORMAL)
@@ -91,6 +87,4 @@ def test_update_non_existent_book():
         )
     )
     assert response.status_code == 400
-    logging.info(response.text)
-    logging.info(response.status_code)
-    logging.info(response.url)
+    response_logging(response=response)

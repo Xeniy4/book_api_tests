@@ -3,7 +3,7 @@ import logging
 import allure
 from allure_commons.types import Severity
 
-from api_methods.api import DeleteBooks
+from api_methods.api import DeleteBooks, response_logging
 
 del_book = DeleteBooks()
 
@@ -16,9 +16,7 @@ del_book = DeleteBooks()
 def test_delete_book():
     response = del_book.delete_booking('7')
     assert response.status_code == 201
-    logging.info(response.text)
-    logging.info(response.status_code)
-    logging.info(response.url)
+    response_logging(response=response)
 
 
 @allure.severity(Severity.NORMAL)
@@ -29,6 +27,4 @@ def test_delete_book():
 def test_delete_non_existent_book():
     response = del_book.delete_booking("1234567891234598")
     assert response.status_code == 405
-    logging.info(response.text)
-    logging.info(response.status_code)
-    logging.info(response.url)
+    response_logging(response=response)

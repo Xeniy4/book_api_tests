@@ -7,8 +7,8 @@ import requests
 from allure_commons.types import Severity
 from jsonschema.validators import validate
 
-from api_methods.api import base_url, CreateUpdateBook, booking_endpoint
-from schemas import schema_create_book
+from api_methods.api import base_url, CreateUpdateBook, booking_endpoint, response_logging
+from models.schemas import schema_create_book
 
 body_create = CreateUpdateBook()
 today = str(datetime.date.today())
@@ -38,10 +38,7 @@ def test_create_valid_booking():
     response_body = response.json()
     validate(response_body, schema_create_book)
     id_book = response.json()["bookingid"]
-    logging.info(response.text)
-    logging.info(response.status_code)
-    logging.info(response.url)
-    logging.info(response.headers)
+    response_logging(response=response)
     return id_book
 
 
@@ -63,6 +60,4 @@ def test_create_no_valid_booking():
         )
     )
     assert response.status_code == 500
-    logging.info(response.text)
-    logging.info(response.status_code)
-    logging.info(response.url)
+    response_logging(response=response)

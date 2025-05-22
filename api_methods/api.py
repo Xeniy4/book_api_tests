@@ -7,13 +7,14 @@ from dotenv import load_dotenv
 
 from models.auth_models import AuthModel
 from models.create_models import CreateModel
+from tests.config import base_url
 
 load_dotenv()
 
 username = os.getenv("BOOKER_USERNAME")
 password = os.getenv("BOOKER_PASSWORD")
 
-base_url = "https://restful-booker.herokuapp.com"
+
 booking_endpoint = "/booking/"
 
 

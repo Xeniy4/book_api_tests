@@ -10,7 +10,7 @@ from api_methods.api import base_url, booking_endpoint, CreateUpdateBook, auth_b
 from schemas import schema_update_success
 
 update_body = CreateUpdateBook()
-response_token = auth_booking()
+auth_token = auth_booking()
 
 
 @allure.severity(Severity.NORMAL)
@@ -22,7 +22,7 @@ def test_update_self_book():
     response = requests.put(
         url=base_url + booking_endpoint + "21",
         headers={
-            'Cookie': f'token={response_token}'
+            'Cookie': f'token={auth_token}'
         },
         json=update_body.create_update_body_valid(
             first_name="Petr",
@@ -52,7 +52,7 @@ def test_update_non_existent_book():
     response = requests.put(
         url=base_url + booking_endpoint + "214546184",
         headers={
-            'Cookie': f'token={response_token}'
+            'Cookie': f'token={auth_token}'
         },
         json=update_body.create_update_body_valid(
             first_name="Petr123",
@@ -79,7 +79,7 @@ def test_update_non_existent_book():
     response = requests.put(
         url=base_url + booking_endpoint + "21454618416846165",
         headers={
-            'Cookie': f'token={response_token}'
+            'Cookie': f'token={auth_token}'
         },
         json=update_body.create_update_body_no_firstname(
             last_name="Petrov321",

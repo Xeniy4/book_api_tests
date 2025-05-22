@@ -3,17 +3,7 @@
 [Restful-booker](https://restful-booker.herokuapp.com/)
 
 ---
-
 <img src="media/images/booker.png">
-
-
-Список проведенных проверок:
-
-- Авторизация пользователя
-- Создания заказа
-- Редактирование заказа
-- Удаление заказа
-- Просмотр информации по заказу
 
 ---
 
@@ -30,6 +20,14 @@
 > ➠ [Отчет в Telegram](#Отчет-о-результатах-тестирования-в-Telegram)
 
 ---
+## Список проведенных проверок:
+
+- Авторизация пользователя
+- Создания заказа
+- Редактирование заказа
+- Удаление заказа
+- Просмотр информации по заказу
+---
 
 ## Проект реализован с использованием актуальных инструментов:  
 <img src="media/icons/python.svg" width="50">  <img src="media/icons/pytest.png" width="50"> <img src="media/icons/pydantic.png" width="50"> <img src="media/icons/jenkins.png" width="50"> <img src="media/icons/test_ops.png" width="50"> <img src="media/icons/allure_report.png" width="50"> <img src="media/icons/tg.png" width="50">
@@ -44,7 +42,7 @@
 
 ---
 
-### Локальный запуск
+## Локальный запуск
 
 Перед запуском в корне проекта создать файл .env с содержимым:
 
@@ -77,7 +75,7 @@ allure.bat serve tests/allure-results
 <img src="media/images/allure_1.png">
 
 ---
-### Удаленный запуск тестов выполняется в Jenkins
+## Удаленный запуск тестов выполняется в Jenkins
 Посмотреть и запустить можно на странице проекта в [Jenkins](https://jenkins.autotests.cloud/job/api_tests_booking/).
 
 Для запуска тестов необходимо:

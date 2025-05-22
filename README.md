@@ -17,6 +17,18 @@
 
 ---
 
+> ➠ [Стэк](#Проект реализован с использованием актуальных инструментов)
+>
+> ➠ [Локальный запуск](#Локальный запуск)
+>
+> ➠ [Удаленный запуск через Jenkins](#Удаленный запуск тестов выполняется в Jenkins)
+> 
+> ➠ [Статистика отчета в Allure TestOps](#Статистика отчета хранится в Allure TestOps)
+> 
+> ➠ [Отчет в Telegram](#Отчет о результатах тестирования в Telegram)
+
+---
+
 Проект реализован с использованием актуальных инструментов:  
 <img src="media/icons/python.svg" width="50">  <img src="media/icons/pytest.png" width="50"> <img src="media/icons/pydantic.png" width="50"> <img src="media/icons/jenkins.png" width="50"> <img src="media/icons/test_ops.png" width="50"> <img src="media/icons/allure_report.png" width="50"> <img src="media/icons/tg.png" width="50">
 
@@ -54,7 +66,7 @@ pytest .
 allure.bat serve tests/allure-results
 ```
 
-## Пример локального отчета о прохождении api-тестов
+Пример локального отчета о прохождении api-тестов
 
 <img src="media/images/allure_2.png">
 

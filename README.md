@@ -19,7 +19,7 @@
 
 > ➠ [Стэк](#Проект реализован с использованием актуальных инструментов)
 >
-> ➠ [Локальный запуск](#Локальный запуск)
+> ➠ [Локальный запуск](#Локальный-запуск)
 >
 > ➠ [Удаленный запуск через Jenkins](#Удаленный запуск тестов выполняется в Jenkins)
 > 
@@ -29,7 +29,7 @@
 
 ---
 
-Проект реализован с использованием актуальных инструментов:  
+## Проект реализован с использованием актуальных инструментов:  
 <img src="media/icons/python.svg" width="50">  <img src="media/icons/pytest.png" width="50"> <img src="media/icons/pydantic.png" width="50"> <img src="media/icons/jenkins.png" width="50"> <img src="media/icons/test_ops.png" width="50"> <img src="media/icons/allure_report.png" width="50"> <img src="media/icons/tg.png" width="50">
 
 - Язык программирования `Python`
